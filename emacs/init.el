@@ -1,10 +1,13 @@
+; libs load path
+(add-to-list 'load-path "~/.emacs.d/lib/")
+
 ; prevent screen spliting after startup
 (setq inhibit-startup-screen t)
 ; maximize emacs frame on start-up
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 ; load dracula theme
-(add-to-list 'custom-theme-load-path "~/.emacs.d/dracula-theme.el")
+(add-to-list 'custom-theme-load-path "~/.emacs.d/")
 (load-theme 'dracula t)
 
 ; enable whitespace-mode
@@ -24,6 +27,10 @@
                          ; characters visualised with marks
                          space-mark
                          ))
+
+; rainbow delimeters mode
+(require 'rainbow-delimiters)
+(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 
 ; stop creating backup~ files
 (setq make-backup-files nil)
