@@ -10,7 +10,7 @@
 (add-to-list 'custom-theme-load-path "~/.emacs.d/")
 (load-theme 'dracula t)
 
-; enable whitespace-mode
+; show whitespaces
 (require 'whitespace)
 (global-whitespace-mode 1)
 ; whitespace display style
@@ -28,9 +28,12 @@
                          space-mark
                          ))
 
-; rainbow delimeters mode
+; color backets pairs
 (require 'rainbow-delimiters)
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+
+; show line numbers on editor's left margin
+(global-linum-mode t)
 
 ; stop creating backup~ files
 (setq make-backup-files nil)
