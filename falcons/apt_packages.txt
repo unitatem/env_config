@@ -1,0 +1,9 @@
+bison
+clang
+flex
+liblmdb-dev
+libmsgpack-dev
+libzstd-dev
+swig
+python-clang-6.0
+python-pip

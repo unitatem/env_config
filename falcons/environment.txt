@@ -1,0 +1,34 @@
+falcons_dir=/home/mariusz/working_directory/falcons
+my_env_setup_dir=$falcons_dir/env_config
+
+echo "WARNING: script is running for falcons_dir=${falcons_dir}"
+echo "WARNING: script is running for my_env_setup_dir=${my_env_setup_dir}"
+
+
+source /opt/ros/melodic/setup.bash
+export ROS_PACKAGE_PATH=$falcons_dir/code/packages:$ROS_PACKAGE_PATH
+export ROS_PACKAGE_PATH=$falcons_dir/code/externals:$ROS_PACKAGE_PATH
+
+export OPENCV_VERSION=`pkg-config --modversion opencv`
+
+export PATH=$falcons_dir/code/scripts:$PATH
+export PATH=$falcons_dir/code/packages/coachCommands:$PATH
+export PATH=$falcons_dir/code/packages/processManager:$PATH
+export PATH=$falcons_dir/code/packages/jobManager:$PATH
+export PATH=$falcons_dir/code/packages/robotControl:$PATH
+
+
+function falcons_build
+{
+  rosmake $1 `$falcons_dir/code/scripts/package_list`
+}
+
+function falcons_build_full
+{
+  falcons_build --pre-clean
+}
+
+function falcons_build_teamplay
+{
+  rosmake "teamplay"
+}
