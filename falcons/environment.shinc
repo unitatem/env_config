@@ -25,10 +25,11 @@ function falcons_build
 
 function falcons_build_full
 {
+  echo "FULL BUILD WARNING"
   falcons_build --pre-clean
 }
 
 function falcons_build_teamplay
 {
-  rosmake "teamplay"
+  rosmake -s "teamplay"
 }

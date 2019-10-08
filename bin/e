@@ -1,4 +1,5 @@
 #!/bin/bash
 
 echo "Starting emacs in backgroud"
+echo "$@"
 emacs "$@" &

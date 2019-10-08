@@ -15,7 +15,7 @@ sudo rosdep init
 rosdep update
 
 # setup ros environment, export variables and enable wrappers
-source $my_env_setup_dir/environment.txt
+source $my_env_setup_dir/environment.shinc
 # falcons_dir
 # my_env_setup_dir
 
