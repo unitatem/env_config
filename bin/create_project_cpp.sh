@@ -59,5 +59,12 @@ mkdir -p build && cmake . -B./build && cmake --build build
 EOF
 chmod u+x tools/build.sh
 
+cat > tools/test.sh <<EOF
+#!/bin/bash
+
+cd build/tests && export GTEST_COLOR=1; ctest -V
+
+EOF
+
 tree
 
