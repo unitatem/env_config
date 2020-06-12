@@ -5,16 +5,6 @@ name=$1
 mkdir "$name"
 cd "$name"
 
-mkdir include
-pushd include > /dev/null
-mkdir "$name"
-popd > /dev/null
-
-mkdir build
-mkdir src
-mkdir tests
-mkdir tools
-
 cat >.gitignore <<EOF
 build/
 
@@ -46,6 +36,28 @@ if (TESTS)
 endif ()
 
 EOF
+
+mkdir include
+pushd include > /dev/null
+mkdir "$name"
+popd > /dev/null
+
+mkdir build
+
+mkdir src
+touch src/CMakeLists.txt
+
+mkdir tests
+touch tests/CMakeLists.txt
+
+mkdir tools
+cat > tools/build.sh <<EOF
+#!/bin/bash
+
+mkdir -p build && cmake . -B./build && cmake --build build
+
+EOF
+chmod u+x tools/build.sh
 
 tree
 
