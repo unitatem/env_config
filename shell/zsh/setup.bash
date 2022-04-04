@@ -16,6 +16,13 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 # use CTRL+T to search for files
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/projects/fzf && ~/projects/fzf/install
 
+# Install fonts
+# https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Hack#license
+wget -O /tmp/Hack-Regular.ttf https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Hack/Regular/complete/Hack%20Regular%20Nerd%20Font%20Complete.ttf
+mkdir -p .local/share/fonts/
+cp /tmp/Hack-Regular.ttf .local/share/fonts/.
+fc-cache -f -v
+
 
 echo "Symlink zshrc file in the repo to the ~/.zshrc"
 
