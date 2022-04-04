@@ -1,7 +1,0 @@
-#!/bin/bash
-
-file_path="$1"
-echo "File: $file_path"
-
-echo "Starting emacs in backgroud"
-emacs "$file_path" &
