@@ -4,6 +4,10 @@
 # https://ivanaugustobd.medium.com/your-terminal-can-be-much-much-more-productive-5256424658e8
 
 
+# Install terminal
+sudo apt-get update
+sudo apt-get install tilix
+
 # Install zsh
 sudo apt install zsh
 # Install oh-my-zsh
@@ -21,9 +25,9 @@ git clone https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zs
 
 # Install fonts
 # https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Hack#license
-wget -O /tmp/Hack-Regular.ttf https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Hack/Regular/complete/Hack%20Regular%20Nerd%20Font%20Complete.ttf
+wget -O /tmp/Hack.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zipunzip Hack.zip -d /tmp/Hack
 mkdir -p .local/share/fonts/
-cp /tmp/Hack-Regular.ttf .local/share/fonts/.
+cp /tmp/Hack/* .local/share/fonts/.
 fc-cache -f -v
 
 
