@@ -11,7 +11,7 @@ sudo apt-get install tilix
 # Install zsh
 sudo apt install zsh
 # Install oh-my-zsh
-curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh > /tmp/install.sh && ZSH=~/projects/oh-my-zsh; sh /tmp/install.sh
+curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh > /tmp/install.sh && cd && export ZSH=~/projects/oh-my-zsh; sh /tmp/install.sh && cd -
 
 
 # Install plugins
@@ -26,7 +26,8 @@ git clone https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zs
 
 # Install fonts
 # https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Hack#license
-wget -O /tmp/Hack.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zipunzip Hack.zip -d /tmp/Hack
+wget -O /tmp/Hack.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip
+unzip /tmp/Hack.zip -d /tmp/Hack
 mkdir -p .local/share/fonts/
 cp /tmp/Hack/* .local/share/fonts/.
 fc-cache -f -v
