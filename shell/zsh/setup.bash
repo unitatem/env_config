@@ -1,17 +1,32 @@
 #!/bin/bash
 
+set -e
+# SHELL_SUDO
+# SHELL_INSTALL_TERMINAL
+# SHELL_CREATE_SYMLINK
+
+if [ -z ${SHELL_INSTALL_SUDO+x} ]; then SHELL_INSTALL_SUDO=sudo; fi
+
+
 # Resources
 # https://ivanaugustobd.medium.com/your-terminal-can-be-much-much-more-productive-5256424658e8
 
+$SHELL_SUDO apt-get update
 
 # Install terminal
-sudo apt-get update
-sudo apt-get install tilix
+if [ ! -z ${SHELL_INSTALL_TERMINAL+x} ]; then
+	$SHELL_SUDO apt-get install tilix
+fi
 
 # Install zsh
-sudo apt install zsh
+$SHELL_SUDO apt-get -y install zsh
 # Install oh-my-zsh
-curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh > /tmp/install.sh && cd && export ZSH=~/projects/oh-my-zsh; sh /tmp/install.sh && cd -
+curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh > /tmp/install.sh
+cd
+export ZSH=~/projects/oh-my-zsh
+export ZSH_CUSTOM=$ZSH/custom
+sh /tmp/install.sh --unattended
+cd -
 
 
 # Install plugins
@@ -19,7 +34,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 # use CTRL+T to search for files
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/projects/fzf && ~/projects/fzf/install
-sudo gem install colorls
+$SHELL_SUDO gem install colorls
 
 # Install themes
 git clone https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
@@ -33,5 +48,12 @@ cp /tmp/Hack/* .local/share/fonts/.
 fc-cache -f -v
 
 
-echo "Symlink zshrc file in the repo to the ~/.zshrc"
+if [ -z ${SHELL_CREATE_SYMLINK+x} ]; then
+	echo "Symlink zshrc file in the repository to the ~/.zshrc"
+else
+	rm -f $HOME/.zshrc
+	ln -s $PWD/zshrc $HOME/.zshrc
+	ln -s $PWD/p10k.zsh $HOME/.p10k.zsh
+fi
 
+echo "Run zsh :)"

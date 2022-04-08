@@ -1,0 +1,22 @@
+FROM ubuntu:latest
+
+RUN apt-get -y update \
+  && apt-get -y install \
+	git \
+	curl \
+	wget \
+	vim \
+	gcc \
+	make \
+	rubygems \
+	ruby-dev \
+	fontconfig
+
+ENV SHELL_SUDO=""
+ENV SHELL_CREATE_SYMLINK=""
+
+WORKDIR /root/config
+COPY . .
+
+ENTRYPOINT sleep infinity
+
