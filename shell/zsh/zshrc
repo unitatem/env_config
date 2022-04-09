@@ -84,7 +84,9 @@ plugins=(
     zsh-syntax-highlighting
     zsh-autosuggestions
 )
-source $(dirname $(gem which colorls))/tab_complete.sh
+if command -v colorls >/dev/null 2>&1 ; then
+	source $(dirname $(gem which colorls))/tab_complete.sh
+fi
 
 source $ZSH/oh-my-zsh.sh
 
@@ -119,6 +121,7 @@ source $ZSH/oh-my-zsh.sh
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-
-alias ls="colorls"
+if command -v colorls >/dev/null 2>&1 ; then
+	alias ls="colorls"
+fi
 

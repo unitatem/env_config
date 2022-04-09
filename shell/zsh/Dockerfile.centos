@@ -1,0 +1,26 @@
+FROM centos:latest
+
+RUN cd /etc/yum.repos.d/ \
+  && sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-* \
+  && sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
+
+RUN yum -y update \
+  && yum -y install \
+	git \
+	gem \
+	ruby-devel \
+	gcc \
+	redhat-rpm-config \
+	make \
+	wget \
+	fontconfig
+
+ENV SHELL_SUDO=""
+ENV SHELL_PACKAGE_MANAGER="yum"
+ENV SHELL_CREATE_SYMLINK=""
+
+WORKDIR /root/config
+COPY . .
+
+ENTRYPOINT sleep infinity
+

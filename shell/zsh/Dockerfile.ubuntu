@@ -13,6 +13,8 @@ RUN apt-get -y update \
 	fontconfig
 
 ENV SHELL_SUDO=""
+ENV SHELL_PACKAGE_MANAGER="apt-get"
+ENV SHELL_INSTALL_COLORLS=""
 ENV SHELL_CREATE_SYMLINK=""
 
 WORKDIR /root/config
